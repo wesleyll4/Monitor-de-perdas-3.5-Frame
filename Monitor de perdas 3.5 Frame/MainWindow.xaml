@@ -1,0 +1,44 @@
+﻿<Window x:Class="Monitor_de_perdas_3._5_Frame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Monitor_de_perdas_3._5_Frame"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="833.506" Width="1783.157">
+    <Window.Background>
+        <ImageBrush ImageSource="PanaFundoBranco.jpg"/>
+    </Window.Background>
+    <Grid>
+        <ListView ItemsSource="{Binding ListaDeComponentes}" Margin="10,10,10,0" VerticalAlignment="Top" x:Name="Listv" Background="White" FontSize="32" Opacity="0.8" Foreground="Black" BorderBrush="Black" BorderThickness="1">
+            <ListView.Resources>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding State}"
+                      Value="State1">
+                            <Setter Property="Background"
+                  Value="Red" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridView.ColumnHeaderContextMenu>
+                        <ContextMenu/>
+                    </GridView.ColumnHeaderContextMenu>
+                    <GridViewColumn Header="Maquina" DisplayMemberBinding="{Binding Maquina, Mode=OneWay}"/>
+                    <GridViewColumn Header="TBL" DisplayMemberBinding="{Binding Tbl, Mode=OneWay}"/>
+                    <GridViewColumn Header="Endereço" DisplayMemberBinding="{Binding Endereço, Mode=OneWay}"/>
+                    <GridViewColumn Header="Part Number" DisplayMemberBinding="{Binding PN, Mode=OneWay}"/>
+                    <GridViewColumn Header="Quantidade" DisplayMemberBinding="{Binding TotalMontado, Mode=OneWay}"/>
+                    <GridViewColumn Header="PickUp" DisplayMemberBinding="{Binding TotalPickupError, Mode=OneWay}"/>
+                    <GridViewColumn Header="Recog" DisplayMemberBinding="{Binding TotalRecogError, Mode=OneWay}"/>
+                    <GridViewColumn Header="Total Perdido" DisplayMemberBinding="{Binding TotalPerdido, Mode=OneWay}"/>
+                    <GridViewColumn Header="   %  " DisplayMemberBinding="{Binding Porcentagem, Mode=OneWay}"/>
+                    <GridViewColumn Header=" Status" Width="400" DisplayMemberBinding="{Binding Status, Mode=OneWay}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
