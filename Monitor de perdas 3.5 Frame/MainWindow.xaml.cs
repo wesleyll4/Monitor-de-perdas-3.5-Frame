@@ -32,15 +32,23 @@ namespace Monitor_de_perdas_3._5_Frame
             watcher.IncludeSubdirectories = true;
 
             watcher.Created += Watcher_Created;
+            try
+                {
 
-            var Diretorio = new DirectoryInfo(@"D:\kme\pt200\ProductReport\");
+                var Diretorio = new DirectoryInfo(@"D:\kme\pt200\ProductReport\");
 
 
-            var LastFile = (from f in Diretorio.GetFiles("*.mpr", SearchOption.AllDirectories)
-                            orderby f.LastWriteTime descending
-                            select f).First().FullName.ToString();
+                var LastFile = (from f in Diretorio.GetFiles("*.mpr", SearchOption.AllDirectories)
+                                orderby f.LastWriteTime descending
+                                select f).First().FullName.ToString();
 
-          Split_MPR(LastFile);
+                Split_MPR(LastFile);
+                }
+
+            catch
+                {
+
+                }
 
             }
 
